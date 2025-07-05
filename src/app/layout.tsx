@@ -27,8 +27,23 @@ export default function RootLayout({
   });
   return (
     <html lang="en">
-    
-    <script src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"></script>
+    <head>
+      <script src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.RDKitModule = {
+              locateFile: (file) => {
+                if (file.endsWith('.wasm')) {
+                  return '/RDKit_minimal.wasm';
+                }
+                return file;
+              }
+            };
+          `,
+        }}
+      />
+    </head>
 
       <body suppressHydrationWarning={true}>
         <SessionProvider>
