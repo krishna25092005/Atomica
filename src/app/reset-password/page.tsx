@@ -11,6 +11,9 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { AnimatedContainer } from "@/components/ui/AnimatedContainer";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 const ResetPasswordPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");

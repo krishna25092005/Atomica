@@ -29,6 +29,9 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 const ModalLayout = () => {
   const { data: session } = useSession();
   const searchParams = useSearchParams();

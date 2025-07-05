@@ -1,5 +1,9 @@
+"use client";
 import React from "react";
 import Modal from "@/components/ui/Modal";
+
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
 
 // This is a page component that demonstrates modal usage
 const ModalsPage: React.FC = () => {

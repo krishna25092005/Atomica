@@ -9,6 +9,9 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import { AnimatedContainer } from "@/components/ui/AnimatedContainer";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 const VerifyEmailPage: React.FC = () => {
   const [status, setStatus] = useState<"loading" | "success" | "error">(
     "loading",
