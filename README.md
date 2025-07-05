@@ -7,6 +7,7 @@ A modern, comprehensive drug discovery and molecular research platform built wit
 ## ✨ Features
 
 ### 🎯 Core Functionality
+
 - **AI-Powered Molecule Generation** - Generate novel molecular structures using advanced AI algorithms
 - **Compound Bioactivity Analysis** - Integrated PubChem database for comprehensive bioactivity data
 - **Molecular Database** - Browse and search through extensive compound libraries
@@ -15,6 +16,7 @@ A modern, comprehensive drug discovery and molecular research platform built wit
 - **User Authentication** - Secure login/signup with NextAuth.js
 
 ### 🎨 Modern UI/UX
+
 - **Responsive Design** - Optimized for all screen sizes
 - **Dark Mode Support** - Toggle between light and dark themes
 - **Smooth Animations** - Framer Motion and GSAP powered transitions
@@ -22,6 +24,7 @@ A modern, comprehensive drug discovery and molecular research platform built wit
 - **Interactive Dashboard** - Real-time stats and activity tracking
 
 ### 🔬 Scientific Tools
+
 - **SMILES Support** - Chemical structure representation
 - **2D Structure Visualization** - Interactive molecular diagrams
 - **Bioactivity Search** - PubChem integration for compound analysis
@@ -31,25 +34,29 @@ A modern, comprehensive drug discovery and molecular research platform built wit
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - MongoDB database
 - Git
 
 ### Installation
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/your-username/atomica.git
 cd atomica
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Set up environment variables**
-Create a `.env.local` file in the root directory:
+   Create a `.env.local` file in the root directory:
+
 ```env
 MONGODB_URL=your_mongodb_connection_string
 NEXTAUTH_SECRET=your_nextauth_secret
@@ -59,6 +66,7 @@ ABLY_API_KEY=your_ably_api_key
 ```
 
 4. **Run the development server**
+
 ```bash
 npm run dev
 ```
@@ -68,6 +76,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **Next.js 14** - React framework with App Router
 - **TypeScript** - Type-safe JavaScript
 - **Tailwind CSS** - Utility-first CSS framework
@@ -76,6 +85,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 - **Lucide Icons** - Modern icon library
 
 ### Backend
+
 - **MongoDB** - NoSQL database
 - **Mongoose** - MongoDB object modeling
 - **NextAuth.js** - Authentication
@@ -83,6 +93,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 - **Ably** - Real-time messaging
 
 ### Scientific Libraries
+
 - **RDKit** - Cheminformatics toolkit
 - **PubChem API** - Chemical database integration
 - **NVIDIA MolMIM** - AI molecule generation
@@ -114,6 +125,7 @@ atomica/
 ## 🔬 Usage
 
 ### Generating Molecules
+
 1. Navigate to the **Model** section
 2. Enter a SMILES string or use examples
 3. Adjust generation parameters
@@ -121,12 +133,14 @@ atomica/
 5. View results with 2D structure visualization
 
 ### Bioactivity Analysis
+
 1. Go to **Model** → **Bioactivity** tab
 2. Enter a compound name (e.g., "Aspirin")
 3. Click "Search Bioactivity"
 4. View comprehensive PubChem data in embedded iframe
 
 ### Molecule Bank
+
 1. Browse the **Molecule Bank** section
 2. Use filters to search specific compounds
 3. View detailed molecular information
@@ -135,12 +149,14 @@ atomica/
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
 1. Push your code to GitHub
 2. Connect your repository to Vercel
 3. Add environment variables in Vercel dashboard
 4. Deploy with one click
 
 ### Environment Variables for Production
+
 ```env
 MONGODB_URL=your_production_mongodb_url
 NEXTAUTH_SECRET=your_production_secret
@@ -174,6 +190,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📧 Contact
 
 For questions or support, please open an issue or contact:
+
 - Email: your-email@example.com
 - GitHub: [@your-username](https://github.com/your-username)
 

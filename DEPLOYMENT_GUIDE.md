@@ -47,6 +47,7 @@ git push -u origin main
 ## Step 4: Verify Repository
 
 After pushing, your GitHub repository should contain:
+
 - ✅ All source code files
 - ✅ README.md with project documentation
 - ✅ package.json with dependencies
@@ -83,6 +84,7 @@ Your modern drug discovery platform will be live at:
 ---
 
 **Next Steps After Deployment:**
+
 1. Test all features on the live site
 2. Share the URL with your research team
 3. Monitor usage and performance
