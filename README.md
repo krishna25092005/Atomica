@@ -191,8 +191,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions or support, please open an issue or contact:
 
-- Email: krishna.chauhan2005@outlook.com
-- GitHub: [krishna25092005](https://github.com/krishna25092005)
+- Email: krishna.chauhan2005@outlook.com | kratanjalichandel440@gmail.com
+- GitHub: [krishna25092005](https://github.com/krishna25092005) | [kratanjali-chandel](https://github.com/kratanjali-chandel)
 
 ---
 
