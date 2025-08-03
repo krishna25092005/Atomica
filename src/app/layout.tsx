@@ -9,6 +9,7 @@ import * as Ably from "ably";
 import { AblyProvider, ChannelProvider } from "ably/react";
 import { SessionProvider } from "next-auth/react";
 import { UserProvider } from "@/app/context/UserContext";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function RootLayout({
   children,
@@ -27,9 +28,7 @@ export default function RootLayout({
   });
   return (
     <html lang="en">
-    
-    <script src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"></script>
-
+      <script src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"></script>
       <body suppressHydrationWarning={true}>
         <SessionProvider>
           <UserProvider>
@@ -42,6 +41,7 @@ export default function RootLayout({
             </AblyProvider>
           </UserProvider>
         </SessionProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
