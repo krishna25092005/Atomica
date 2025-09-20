@@ -155,25 +155,30 @@ const SignUp: React.FC = () => {
 
       if (result.success) {
         // Handle successful signup
-        console.log("User created successfully:", result.user);
-        console.log("Email status debug:", result.emailStatus);
+        if (process.env.NODE_ENV === 'development') {
+          console.log("User created successfully:", result.user);
+          console.log("Email status debug:", result.emailStatus);
+        }
         
         // Check email status and provide appropriate feedback
-        if (result.emailStatus && result.emailStatus.success && !result.emailStatus.developmentMode) {
+        const emailStatus = result.emailStatus as any; // Type assertion to access dynamic properties
+        if (emailStatus && emailStatus.success && !emailStatus.developmentMode) {
           // Email sent successfully in production
-          console.log("Redirecting to check-email");
           window.location.href = "/verify-email?message=check-email";
         } else {
           // User created but email couldn't be sent OR we're in development mode
-          console.log("Email sending issue:", result.emailStatus?.message);
-          console.log("Development mode:", result.emailStatus?.developmentMode);
+          if (process.env.NODE_ENV === 'development') {
+            console.log("Email sending issue:", emailStatus?.message);
+            console.log("Development mode:", emailStatus?.developmentMode);
+          }
           // Always redirect to verification page with token for development/testing
           if (result.user && result.user._id) {
-            const message = result.emailStatus?.developmentMode ? "dev-mode" : "email-failed";
-            console.log(`Redirecting to verify-email with token and message: ${message}`);
+            const message = emailStatus?.developmentMode ? "dev-mode" : "email-failed";
+            if (process.env.NODE_ENV === 'development') {
+              console.log(`Redirecting to verify-email with token and message: ${message}`);
+            }
             window.location.href = `/verify-email?token=${result.user._id}&message=${message}`;
           } else {
-            console.log("Redirecting to signin");
             window.location.href = "/auth-page/signin?message=signup-success";
           }
         }

@@ -30,7 +30,7 @@ export async function createUser(user: CreateUserParams) {
     });
 
     // Send verification email
-    let emailStatus = { success: false, message: "Email not sent" };
+    let emailStatus: any = { success: false, message: "Email not sent" };
     try {
       const verificationUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/verify-email?token=${newUser._id}`;
       const emailResult = await sendVerificationEmail(
@@ -62,8 +62,6 @@ export async function createUser(user: CreateUserParams) {
       console.log("Email sending failed:", emailError);
       emailStatus = { success: false, message: "Email service unavailable" };
     }
-
-    console.log("Final emailStatus before return:", emailStatus);
 
     return {
       success: true,
