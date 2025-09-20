@@ -43,18 +43,87 @@ const SignUp: React.FC = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
-    setImageFile(file);
+    
+    if (file) {
+      // Check file size (limit to 2MB)
+      const maxSizeInMB = 2;
+      const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+      
+      if (file.size > maxSizeInBytes) {
+        setErrors(`Image size must be less than ${maxSizeInMB}MB. Please choose a smaller image.`);
+        return;
+      }
+      
+      // Check file type
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        setErrors('Please upload a valid image file (JPEG, PNG, or WebP).');
+        return;
+      }
+      
+      setErrors(null);
+      setImageFile(file);
+    }
+  };
+
+  const compressImage = (file: File, quality: number = 0.8): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = document.createElement('img') as HTMLImageElement;
+      
+      img.onload = () => {
+        // Calculate new dimensions (max 400x400)
+        const maxDimension = 400;
+        let { width, height } = img;
+        
+        if (width > height && width > maxDimension) {
+          height = (height * maxDimension) / width;
+          width = maxDimension;
+        } else if (height > maxDimension) {
+          width = (width * maxDimension) / height;
+          height = maxDimension;
+        }
+        
+        canvas.width = width;
+        canvas.height = height;
+        
+        // Draw and compress
+        ctx?.drawImage(img, 0, 0, width, height);
+        const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+        resolve(compressedDataUrl);
+      };
+      
+      img.onerror = reject;
+      img.src = URL.createObjectURL(file);
+    });
   };
 
   const convertImageToBase64 = async (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        resolve(reader.result as string);
-      };
-      reader.onerror = reject;
-    });
+    try {
+      // First compress the image
+      const compressedBase64 = await compressImage(file, 0.7);
+      
+      // Check if compressed image is still too large (target: under 500KB base64)
+      const sizeInBytes = (compressedBase64.length * 3) / 4;
+      if (sizeInBytes > 500000) { // 500KB limit
+        // Compress further if still too large
+        return await compressImage(file, 0.5);
+      }
+      
+      return compressedBase64;
+    } catch (error) {
+      console.error('Error compressing image:', error);
+      // Fallback to original conversion if compression fails
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          resolve(reader.result as string);
+        };
+        reader.onerror = reject;
+      });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -87,8 +156,27 @@ const SignUp: React.FC = () => {
       if (result.success) {
         // Handle successful signup
         console.log("User created successfully:", result.user);
-        // Redirect to verification page or login
-        window.location.href = "/verify-email";
+        console.log("Email status debug:", result.emailStatus);
+        
+        // Check email status and provide appropriate feedback
+        if (result.emailStatus && result.emailStatus.success && !result.emailStatus.developmentMode) {
+          // Email sent successfully in production
+          console.log("Redirecting to check-email");
+          window.location.href = "/verify-email?message=check-email";
+        } else {
+          // User created but email couldn't be sent OR we're in development mode
+          console.log("Email sending issue:", result.emailStatus?.message);
+          console.log("Development mode:", result.emailStatus?.developmentMode);
+          // Always redirect to verification page with token for development/testing
+          if (result.user && result.user._id) {
+            const message = result.emailStatus?.developmentMode ? "dev-mode" : "email-failed";
+            console.log(`Redirecting to verify-email with token and message: ${message}`);
+            window.location.href = `/verify-email?token=${result.user._id}&message=${message}`;
+          } else {
+            console.log("Redirecting to signin");
+            window.location.href = "/auth-page/signin?message=signup-success";
+          }
+        }
       } else {
         setErrors(result.message || "Something went wrong. Please try again.");
       }
@@ -322,7 +410,7 @@ const SignUp: React.FC = () => {
                     </label>
                   </div>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                    Upload a profile photo
+                    Upload a profile photo (max 2MB, JPEG/PNG/WebP)
                   </p>
                 </div>
 

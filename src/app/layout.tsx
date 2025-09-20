@@ -2,8 +2,9 @@
 import "jsvectormap/dist/jsvectormap.css";
 import "flatpickr/dist/flatpickr.min.css";
 import "@/css/style.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Loader from "@/components/common/Loader";
+import Script from "next/script";
 
 import * as Ably from "ably";
 import { AblyProvider, ChannelProvider } from "ably/react";
@@ -23,13 +24,20 @@ export default function RootLayout({
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
-  const client = new Ably.Realtime({
+  // Memoize the Ably client to prevent recreation on every render
+  const client = useMemo(() => new Ably.Realtime({
     key: "L-u5Lw.3Q624A:Q8c0OHqRd4ZEdCbrKaJGetcwTXVbBgNAoaUMQBkPQjo",
-  });
+  }), []);
+
   return (
     <html lang="en">
-      <script src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"></script>
       <body suppressHydrationWarning={true}>
+        {/* Load RDKit script with Next.js Script component */}
+        <Script 
+          src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"
+          strategy="beforeInteractive"
+        />
+        
         <SessionProvider>
           <UserProvider>
             <AblyProvider client={client}>
