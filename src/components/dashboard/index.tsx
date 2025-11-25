@@ -61,9 +61,9 @@ const Index: React.FC = () => {
               <FlaskConicalIcon className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Generated</p>
-              <p className="text-2xl font-bold text-black dark:text-white">1,247</p>
-              <p className="text-sm text-green-500">+12% this week</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Molecules</p>
+              <p className="text-2xl font-bold text-black dark:text-white">Available</p>
+              <p className="text-sm text-green-500">Growing daily</p>
             </div>
           </div>
         </Card>
@@ -74,9 +74,9 @@ const Index: React.FC = () => {
               <TrendingUpIcon className="w-6 h-6 text-green-500" />
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Success Rate</p>
-              <p className="text-2xl font-bold text-black dark:text-white">94.2%</p>
-              <p className="text-sm text-green-500">+2.1% improvement</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">AI System</p>
+              <p className="text-2xl font-bold text-black dark:text-white">Active</p>
+              <p className="text-sm text-green-500">Optimized</p>
             </div>
           </div>
         </Card>
@@ -87,9 +87,9 @@ const Index: React.FC = () => {
               <UserCheckIcon className="w-6 h-6 text-blue-500" />
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Active Users</p>
-              <p className="text-2xl font-bold text-black dark:text-white">156</p>
-              <p className="text-sm text-blue-500">+8 today</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Research</p>
+              <p className="text-2xl font-bold text-black dark:text-white">Network</p>
+              <p className="text-sm text-blue-500">Global</p>
             </div>
           </div>
         </Card>
@@ -100,9 +100,9 @@ const Index: React.FC = () => {
               <DatabaseIcon className="w-6 h-6 text-purple-500" />
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Molecules DB</p>
-              <p className="text-2xl font-bold text-black dark:text-white">50.2K</p>
-              <p className="text-sm text-purple-500">Growing daily</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Database</p>
+              <p className="text-2xl font-bold text-black dark:text-white">Expanding</p>
+              <p className="text-sm text-purple-500">Continuous</p>
             </div>
           </div>
         </Card>

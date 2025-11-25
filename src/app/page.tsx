@@ -35,7 +35,7 @@ export default function LandingPage() {
   useEffect(() => {
     // Redirect to dashboard if already logged in
     if (session) {
-      router.push("/model");
+      router.push("/dashboard");
     }
   }, [session, router]);
 
@@ -72,7 +72,7 @@ export default function LandingPage() {
     {
       icon: <DatabaseIcon className="w-8 h-8" />,
       title: "Massive Database",
-      description: "Access 50,000+ compounds with comprehensive bioactivity data from PubChem and proprietary sources.",
+      description: "Access comprehensive molecular database with bioactivity data from PubChem and proprietary sources.",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
@@ -102,14 +102,14 @@ export default function LandingPage() {
   ];
 
   const stats = [
-    { value: "50,000+", label: "Molecules Generated", icon: <AtomIcon className="w-6 h-6" /> },
-    { value: "94.2%", label: "Success Rate", icon: <TrendingUpIcon className="w-6 h-6" /> },
-    { value: "500+", label: "Active Researchers", icon: <UsersIcon className="w-6 h-6" /> },
-    { value: "15+", label: "Countries Worldwide", icon: <GraduationCapIcon className="w-6 h-6" /> }
+    { value: "Growing", label: "Molecules Database", icon: <AtomIcon className="w-6 h-6" /> },
+    { value: "AI-Powered", label: "Generation System", icon: <TrendingUpIcon className="w-6 h-6" /> },
+    { value: "Global", label: "Research Network", icon: <UsersIcon className="w-6 h-6" /> },
+    { value: "Worldwide", label: "Collaboration", icon: <GraduationCapIcon className="w-6 h-6" /> }
   ];
 
   const benefits = [
-    "Accelerate drug discovery by up to 10x",
+    "Accelerate drug discovery with AI",
     "Reduce research costs significantly",
     "Access state-of-the-art AI models",
     "Collaborate with global research community",
@@ -278,23 +278,50 @@ export default function LandingPage() {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center"
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  delay: index * 0.15,
+                  duration: 0.6,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -10,
+                  transition: { duration: 0.3 }
+                }}
+                className="text-center group cursor-pointer"
               >
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl text-white">
-                    {stat.icon}
+                <motion.div 
+                  className="flex justify-center mb-4"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                    <div className="relative p-4 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl text-white shadow-xl group-hover:shadow-2xl group-hover:shadow-purple-500/50 transition-all duration-300">
+                      {stat.icon}
+                    </div>
                   </div>
-                </div>
-                <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                </motion.div>
+                <motion.div 
+                  className="text-4xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: index * 0.15 + 0.3 }}
+                >
                   {stat.value}
-                </div>
-                <div className="text-gray-600 dark:text-gray-400 font-medium">
+                </motion.div>
+                <motion.div 
+                  className="text-gray-600 dark:text-gray-400 font-medium group-hover:text-gray-900 dark:group-hover:text-white transition-colors"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: index * 0.15 + 0.4 }}
+                >
                   {stat.label}
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -395,27 +422,27 @@ export default function LandingPage() {
               className="relative"
             >
               <div className="relative p-8 bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20">
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-2xl text-gray-900 shadow-xl">
-                  94.2%
+                <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center font-bold text-sm text-gray-900 shadow-xl">
+                  <span className="text-center">AI-Driven</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Success Rate</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">Advanced Technology</h3>
                 <p className="text-purple-100 mb-6">
-                  Our AI models achieve industry-leading accuracy in molecular generation and bioactivity prediction.
+                  Our AI models leverage cutting-edge technology for molecular generation and bioactivity prediction.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-white">Model Accuracy</span>
-                    <span className="text-white font-bold">94.2%</span>
+                    <span className="text-white">NVIDIA MolMIM</span>
+                    <span className="text-white font-bold">✓ Active</span>
                   </div>
                   <div className="w-full bg-white/20 rounded-full h-3">
-                    <div className="bg-gradient-to-r from-green-400 to-blue-400 h-3 rounded-full" style={{ width: "94.2%" }}></div>
+                    <div className="bg-gradient-to-r from-green-400 to-blue-400 h-3 rounded-full" style={{ width: "100%" }}></div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-white">User Satisfaction</span>
-                    <span className="text-white font-bold">98.5%</span>
+                    <span className="text-white">PubChem Integration</span>
+                    <span className="text-white font-bold">✓ Active</span>
                   </div>
                   <div className="w-full bg-white/20 rounded-full h-3">
-                    <div className="bg-gradient-to-r from-purple-400 to-pink-400 h-3 rounded-full" style={{ width: "98.5%" }}></div>
+                    <div className="bg-gradient-to-r from-purple-400 to-pink-400 h-3 rounded-full" style={{ width: "100%" }}></div>
                   </div>
                 </div>
               </div>

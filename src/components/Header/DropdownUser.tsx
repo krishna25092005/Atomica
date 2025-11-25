@@ -15,7 +15,7 @@ const DropdownUser = () => {
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
-    router.push("/auth-page/signin");
+    router.push("/");
   };
 
   return (

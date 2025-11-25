@@ -17,6 +17,7 @@ export default function DefaultLayout({
   const pathname = usePathname();
 
   const publicRoutes = [
+    "/",
     "/auth-page/signin",
     "/auth-page/signup",
     "/verify-email",
@@ -26,7 +27,7 @@ export default function DefaultLayout({
 
   useLayoutEffect(() => {
     if (status === "unauthenticated" && !publicRoutes.includes(pathname)) {
-      router.push("/auth-page/signin");
+      router.push("/");
     }
   }, [status, router, pathname]);
 
