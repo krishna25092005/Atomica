@@ -103,64 +103,51 @@ const ModalLayout = () => {
     e.preventDefault();
     setLoading(true);
 
-    const API_KEY =
-      "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";
-
-    const invokeUrl =
-      "https://health.api.nvidia.com/v1/biology/nvidia/molmim/generate";
-
-    const payload = {
-      algorithm: "CMA-ES",
-      num_molecules: parseInt(numMolecules),
-      property_name: "QED",
-      minimize: false,
-      min_similarity: parseFloat(minSimilarity),
-      particles: parseInt(particles),
-      iterations: parseInt(iterations),
-      smi: smiles,
-    };
-
     try {
-      const response = await fetch(invokeUrl, {
+      // Call our secure server-side API route instead of direct NVIDIA API
+      const response = await fetch('/api/molecule-generation', {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${API_KEY}`,
-          Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          inputSmiles: smiles,
+          numMolecules: parseInt(numMolecules),
+          similarityThreshold: parseFloat(minSimilarity),
+          optimizationCriteria: "QED",
+        }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
-      const generatedMolecules = JSON.parse(data.molecules).map((mol: any) => ({
-        structure: mol.sample,
-        score: mol.score,
+      
+      // Map the new response format to the expected format
+      const generatedMolecules = data.molecules.map((mol: any) => ({
+        structure: mol.smiles,
+        score: mol.validation.descriptors.qed,
+        qed: mol.validation.descriptors.qed,
+        saScore: mol.validation.descriptors.sa_score,
+        logP: mol.validation.descriptors.logP,
+        molecularWeight: mol.validation.descriptors.molecularWeight,
+        druglike: mol.validation.descriptors.druglike,
       }));
 
       setMolecules(generatedMolecules);
 
+      // Refresh history from the database
       if (userId) {
-        await createMoleculeGenerationHistory(
-          {
-            smiles,
-            numMolecules: parseInt(numMolecules),
-            minSimilarity: parseFloat(minSimilarity),
-            particles: parseInt(particles),
-            iterations: parseInt(iterations),
-            generatedMolecules,
-          },
-          userId,
-        );
-
         const updatedHistory = await getMoleculeGenerationHistoryByUser(userId);
         setHistory(updatedHistory);
-      } else {
-        console.error("User ID is not available.");
       }
 
-      console.log(generatedMolecules);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+      console.log('Generated molecules with validation:', data);
+    } catch (error: any) {
+      console.error("Error generating molecules:", error);
+      alert(`Error: ${error.message || "Molecule generation failed"}`);
     } finally {
       setLoading(false);
     }
@@ -567,15 +554,47 @@ const ModalLayout = () => {
                     {molecules.map((molecule: any, index: number) => (
                       <div
                         key={index}
-                        className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                        className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border-l-4 border-primary"
                       >
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-sm font-medium text-black dark:text-white">
                             Molecule {index + 1}
                           </span>
-                          <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                            Score: {molecule.score.toFixed(3)}
+                          <span className={`text-xs px-2 py-1 rounded ${
+                            molecule.druglike 
+                              ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
+                              : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
+                          }`}>
+                            {molecule.druglike ? '✓ Drug-like' : '⚠ Review'}
                           </span>
+                        </div>
+                        
+                        {/* Pharmaceutical Properties */}
+                        <div className="grid grid-cols-2 gap-2 mb-3 text-xs">
+                          <div className="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p className="text-gray-500 dark:text-gray-400">QED</p>
+                            <p className="font-semibold text-black dark:text-white">
+                              {molecule.qed?.toFixed(3) || 'N/A'}
+                            </p>
+                          </div>
+                          <div className="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p className="text-gray-500 dark:text-gray-400">SA Score</p>
+                            <p className="font-semibold text-black dark:text-white">
+                              {molecule.saScore?.toFixed(2) || 'N/A'}
+                            </p>
+                          </div>
+                          <div className="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p className="text-gray-500 dark:text-gray-400">LogP</p>
+                            <p className="font-semibold text-black dark:text-white">
+                              {molecule.logP?.toFixed(2) || 'N/A'}
+                            </p>
+                          </div>
+                          <div className="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p className="text-gray-500 dark:text-gray-400">MW</p>
+                            <p className="font-semibold text-black dark:text-white">
+                              {molecule.molecularWeight?.toFixed(1) || 'N/A'}
+                            </p>
+                          </div>
                         </div>
                         
                         {/* Molecule Structure Visualization */}

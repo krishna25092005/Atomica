@@ -31,12 +31,15 @@ const authOptions = {
   callbacks: {
     async jwt({ token, user }: any) {
       if (user) {
-        token.id = user.id;
+        token.id = user._id || user.id;
+        token.email = user.email;
       }
       return token;
     },
     async session({ session, token }: any) {
-      if (token) {
+      if (token && session.user) {
+        session.user.id = token.id;
+        session.user.email = token.email;
         session.id = token.id;
       }
       return session;
@@ -47,4 +50,4 @@ const authOptions = {
 
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST, authOptions };

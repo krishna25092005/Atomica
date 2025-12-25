@@ -1,0 +1,209 @@
+		
+
+
+
+
+RESEARCH ARTICLE
+
+
+
+
+
+
+
+        
+
+Corresponding author:
+Name, affiliation
+E-mail address: 
+
+
+
+
+
+
+
+
+Article History: 
+Received: 
+Revised: 
+Accepted: 
+Published Online:  
+
+	 
+1. Introduction
+The pharmaceutical industry currently finds itself at a cross roads where the current drug discovery processes are being constantly questioned based on the increase in costs, development timescales, and the reductions in the returns of the research investment. Recent estimations made show that developing a new drug with only one successful drug takes an average of 2.6 billion dollars and approximately 10-15 years of intense research and development [1]. Add to this economic strain is the high attrition rates with about 90 percent of drugs being discontinued. Drugs falling out in clinical trials, frequently on weak efficacy grounds, but also because of unexpected problems concerning toxicity, which might otherwise be exposed by more advanced standards of computational screening [2].
+Conventional drug discovery workflows have depended largely on high throughput screening of extensive libraries of compounds, which have been shown to be systematic but still is fundamentally limited by the limited capacity provided by accessible chemical space and the extreme expense of testing and the production of millions of substances [3]. It has considered that cumulatively there are 1020 to 1060 potential small molecules that have drug-like properties in the chemical universe; the present pharmaceutical libraries, however, make a small fraction of this enormous chemical space [4]. 
+Along with the development of artificial intelligence and machine learning technologies, the possibility to revolutionize the process of drug discovery has never been so high. Generative algorithms using deep learning models have proved to be very effective in generating novel molecules with a predefined desired pharmacological profile that still remain chemically sound and synthetically feasible [5]. Nevertheless, barriers exist between these advanced methods of computation being readily applied in realistic research settings, such as the complexity of already existing software tools, demand of special computational skills, and discontinuous character of existing procedures during research work [6].
+The work in drug discovery today exists in a more collaborative framework where chemistry, biology, pharmacology and computational means have been integrated into multidisciplinary work teams to be effective. Albeit powerful, traditional desktop-based computational tools are usually barriers to collaboration because they have installation complexities, platform dependencies, and lack the ability to share [7].
+These platforms do away with conventional obstacles related to installing software, compatibility of the platforms and controlling versions as well as facilitating real-time collaboration capabilities that are becoming critical in contemporary research settings. The track record of web-based solutions in other fields of science (bioinformatics, genomics, and computational biology) demonstrates the feasibility of this solution to complex analysis workflow [8].
+This paper describes Atomica, an end-to-end web platform, which combines AI-enhanced molecular generation with bioreactivity data visualization in real-time and open-source research infrastructure. The platform can be viewed publicly at https://atomica-ai.vercel.app and shows how it is possible to implement advanced AI models as research assistants in a drug discovery platform, which provides a more customized and efficient research experience. Our platform uses the NVIDIA MolMIM API to generate molecules, PubChem integration to analyze the bioactivity and modern web technologies to build a research-focused environment.
+There are technical issues that are new to the combined use of artificial intelligence models and web-based platforms that may involve computational resource, real-time processing, and user experience design. Contemporary web frameworks such as Next.js, React, and Vue.js have progressed to be able to sustain sophisticated applications that can interact with external APIs easily, have the capability to deal with multiple interactions involving state, and offer responsive user interfaces that can be integrated into a scientific process workflow [9].
+Database technologies supporting scientific use have also evolved quite quickly, and NoSQL databases such as MongoDB have flexible schema designs capable of supporting a wide variety of data types that is prevalent in chemical and biological research. Such recent database platforms allow fast prototyping, simple scaling, and multi-dimensional query functionalities needed to support molecular data, user-profiles, collaboration spaces, and research analytics [10].
+Online collaboration capabilities have gained more relevance in decentralized research settings especially after the world transitioned to working remotely and doing foreign collaborations projects. Collaboration technologies including WebSocket connections, real-time databases, and event-driven architecture facilitate the creation of environments in which research in-team members could be simultaneously working on joint projects, sharing the findings in real-time, and accessing a study in a synchronized manner to current research knowledge [11].
+2. Literature Review
+Computational drug discovery has developed due to the tremendous technological change that has occurred in terms of algorithmic development, implementation platforms and integrating strategies. The first computational chemistry packages became available during the 1960s and 1970s and were desktop applications that needed proprietary hardware set-ups and a highly skilled user base, essentially making the application of computational methodologies the prerogative of major research institutions who had long-established computational faculties and resources [12]. The evolution of cheminformatics as a field of study started with the realisation that the chemical information could be encoded, stored and analysed systematically with the help of the computational means. Weininger et al. have done pioneering work in the SMILES (Simplified Molecular Input Line Entry System) notation to introduce a standard way of preserving molecular structures, as an ASCII string, where it can be efficiently stored and manipulated in a digital form [13].
+With platforms of scientific computing based on the web like ChEMBL Web Interface, PubChem Sketcher, ChemSpider, Reaxys Web, SciFinder-n, ZINC Database, ChemDraw Cloud, Molview, ChemSketch Web, there has been extensive potential of democratization of access to advanced high-order analysis capabilities as well as facilitation of collaborative research pipelines. Seminal examples of bioinformatics web-based tools, like the NCBI BLAST server and the services of the European Bioinformatics Institute, demonstrated that complex computational analyses could be provided successfully using simple web-based interfaces without any detriment to scientific results or the computational aspects of its service [14].
+Software as a Service (SaaS) models to scientific computing created a unique situation that genuinely transformed the way in which the tool accessibility and deployment occur in a scientific research sphere. Researchers in studies by Zhang et al. showed that web based scientific applications were capable of attaining similar performance ones in comparison with the desktop-based applications with added advantages of high collaboration levels and cross platform use [15].
+The cheminformatics platform has developed to an online analysis environment encompassing multiple analysis workflows and collaborative capabilities, thus becoming cloud-based. Open-source cheminformatics toolkit RDKit has become a de facto standard in calculation of molecular properties, similarity analysis and structure validation, offering extensive functionality both in Python APIs as well as web service APIs. The modern version of RDKit facilitates the processing of large datasets of molecules efficiently, on-line verification of structure, and compatibility with machine learning toolkits to provide predictive modelling operations [16].
+Integration with databases has been another key element of new drug discovery platforms, especially access to all-inclusive chemical data and bioactivity data. PubChem, a curated database of the National Centre for Biotechnology Information, is a source of one of the largest publicly accessible sets of chemical structures and biological activity data (it contains more than 100 million chemical compounds and related bioassay results) [17].
+There is a growing emphasis on real-time collaboration features in pharmaceutical research as research organizations have a greater geographical distribution and projects also have to be coordinated across organizations and over time zones. Investigations conducted by Foster et al. revealed the importance of collaborative technologies that enable the process of scientific discovery to be conducted in a more rapid and efficient manner (improved sharing of information and reduced redundancy and increased coordination amongst members of an involved research team) [18].
+Scientific web applications represent a very particular case in which questions of authentication and security must consider issues of intellectual property protection, data integrity and compliance requirements, both institutional and regulatory [19]. Recently, frameworks such as NextAuth.js provide end-to-end solutions that support various identity providers, safe session management, and more advanced access control systems with finer-grained access that could be much better used in the context of collaborative research [20]. Researches carried by Zhang et al. focused on graph neural networks more significance to the adoption of modern drug discover experience without compromising good user authentication experiences that do not slow down research productivity [21].
+The optimization of performance of scientific application on the web should be given deep consideration of the computation using resources, the network latency, or user interface touch. High quality web frameworks facilitate advanced caching specified techniques, lazy loading and progressive enhancement approaches which allow highly complicated scientific applications to hold decent performance properties under multiple network situations and apparatus attributes [22]. Efficient data structures, optimised queries to the database and utilisation of content delivery networks may also drastically increase the user experience and minimise the cost of the infrastructure [23].
+API managements, data format normalizations, and workflow orchestrations across an array of external services and computational assets are modern concerns of scientific integration issues. Containerization technologies and microservice architectures give scalable options of solving complex integrations and ensuring system reliability and allowing enhancement in the future [24]. Standardized data exchange formats based on JSON-LD and Schema.org vocabularies allow easy data exchange with existing research infrastructure and other third-party services [25].
+3. Material and Methods
+Atomica platform development methodology has a systematic aspect of software engineering process with an aim of coming up with a sufficient solution to molecular discovery and analysis in terms of robustness, scale and usability. The methodology includes a full set of requirements analysis, architecture design principles, technology selection guidelines, iterative development strategy and more constructive evaluation strategies that verify the technical superiority and on the other hand usability in the context of the pharmaceutical research use. 
+The systematization of functional requirements was into four main categories namely, core platform features, scientific computing integrations, collaboration capabilities and data management capabilities. Basic platform needs would comprise secure user authentication and authorization modules, molecular input modules that would support SMILES notation with real-time validation, AI-driven compound generation modules capable of configurable parameters and constraints, an interactive 2D molecular structure visualizer able to export, a complete module of molecular properties calculation and analysis, and integration with external chemical databases to retrieve bioactivity information.
+Scientific computing needs include the ability to integrate with other cheminformatics libraries (especially RDKit to compute molecular properties and validate molecular structures), strong API communication with NVIDIA MolMIM to get chemically-accurate molecular generation via AI, efficient caching of computationally-heavy tasks, handling of molecular dataset batches, and general error handling within scientific computing workflows which can potentially include invalid atoms or functions. Backend architecture has a service-oriented architecture and distinct API boundaries, modular service components and optimised layers of database interaction. The architecture is biased by the RESTful API design principles but can satisfy the need to provide the real-time communication facility on a WebSocket connection and event-driven architecture. Modularity in service mean that separate platform components can be scaled independently in accordance with usage profiles and computing demands.
+The database design is fully disciplined in accordance with the principles of NoSQL but better geared to the collection and storage of molecular data, user control and collaboration functionality. The schema design supports flexible data structures of molecular information and allows high query throughput of a common operations such as user authentication, molecular search and collaboration workspace management. 
+Frontend technology choice is based on Next.js 14 and its App Router framework for the state-of-the-art performance levels with server-side rendering, optimal bundling, and automatic code splitting features. Based on using TypeScript, the advantage of type safety and even code maintenance over the application development life cycle is provided. Choosing the Tailwind CSS 4.0, one can get a quick time of developing a user interface with the same design system and responsive layouts that are well-tailored to scientific workflows.
+Interaction and animation libraries such as Framer Motion and GSAP offer an advanced level of augmentation of the user experience without compromising how much scientific data visualization is optimized. Lucide Icons is an extensive set of icons, where website design and user accessibility have been used to create icons that are ultra-responsive and fit appropriately to be implemented in the latest web environments. The combination of these frontend technologies allows the creation of advanced user interface capabilities to venture to a standard of usability compatible with the recent research contexts.  
+The backend technology is based majorly on the Node.js where the backend is aimed at providing a unified JavaScript/TypeScript development on both sides of the application, and the locally hosted Node.js runtime systems. MongoDB has flexible NoSQL databases features optimized to the various data types typical of applications of molecular research.
+NextAuth.js is used to provide authentication infrastructure that has the functionality to support a wide variety of identity providers, secure session management and fine-grained authorization checks to accommodate collaborative research groups. Resend offers an integrating facility of email services which is useful in performing reliable transactional messaging services in the user onboarding, part of the recovery of passwords, and notification on collaboration.
+Maintaining the quality of the code makes use of automated linting tools, type checking with the help of TypeScript, and standards of code formatting that are checked by development tools configuration. It has the practice of documentation of all the APIs, development of user guides and technical architecture documentation to ease future maintenance and addition of features. The evaluation approach includes testing functional design, performance check, usability analysis, and scientific prima facie validation to assure the platform resident with the aspects of technical and research needs. Response time must be measured when measuring critical operations, analysis of resources used and load testing to see scalability in a simulated environment.
+4. System Architecture
+The Atomica platform architecture supports a complex, multi-layered design used to respond to the sophisticated needs of modern web-based scientific applications, coupled with the ability to scale-up, secure, and optimize performance. This design has been founded on more recent trends in software development and employs microservice concepts, event-driven architectures and cloud-native design patterns to create a robust foundation of molecular discovery and shared research laboratory processes and workflows. In the frontend architecture, the Next.js 14 will be used along with its App Router framework to provide a complex single-page application, server-side rendering capabilities to have the best performance and search engine optimization.
+ 
+Figure 1. Atomica Architecture Diagram layered view of core components and integration flow
+ 
+Figure 2. Database Schema and Relationship Diagram-Organized view of core collections and how to associate them
+ 
+Figure 3. Frontend Component Architecture Diagram- Hierarchy of UI and Flow of interaction
+ 
+Figure 4. Backend Service Architecture and API design modular service interaction and data flow schema
+5. Results and Discussion
+The comprehensive digitalization of the Atomica platform was implemented and fully tested in many areas of functionality, which proves successful configuration of AI-provisioned systems of molecular generation capabilities and modern web application framework. System evaluation consists of verifying functionality, performance testing, user interface testing, security testing, and scientific accuracy testing and marks all of the areas needed when determining the readiness of a platform in meeting the needs of pharmaceutical research environments.
+The functionality of molecular generation works just fine via seamless interaction with NVIDIA MolMIM API, and it provides stable processing of SMILES input strings followed by rigorous validation of input strings and error handling of invalid molecular representations. The system is effective in generating new compounds based upon user-defined parameters such as similarity cutoffs with values between 0.1 and 1.0, number of molecule specifications to generate a batch up to 100 compounds per request and optimization specifications involving drug-likeness, synthetic accessibility and target specific molecular properties.
+Calculated molecular descriptors such as molecular weight and logP values, the number of hydrogen-bond donors and acceptors, and topological polar surface area are all provided with generated molecules. The platform has been able to integrate RDKit calculations to achieve the real time analysis of properties with 2D structures visualized via optimized JavaScript libraries. There is also the functionality of exporting the results of generation in various formats such as SDF with computational applications, CSV used in spreadsheets, and high-resolution PNG files to be used in presentations and publications.
+Real-time messaging functionality offers instant messaging via chat interface with persistent messages, presence information such as whether a user is online or not, and the amount of active chats with that user, typing indications to manage conversation flows more easily, and history of all messages with search ability in the conversation history. 
+ 
+Figure 5. Atomica user interface screenshots - Dashboard overview and molecular generation workflow
+The message unit has strong connections that are automatically reconnected against network failure as it supports the sharing of files of molecular shapes and research reports. Integration with PubChem API provides a full coverage of bioactivity data retrieval with efficiently managed requests minimizing API requests to ensure information is current, which is important to research uses.
+ 
+Figure 6. Performance Metrics and Response Time Analysis- System responsive analysis of core module-based functionality
+According to performance testing, there are good response times to typical user actions with the page load time averaging less than 2 seconds and backend operations less than 2 / 3 of a second to navigate links having used the cached content. Molecular generation queries take no longer than is reasonable (3 to 30 seconds) and complexity-based (usability) application-level database queries take virtually no time (less than 100 milliseconds) in most normal cases such as user authentication and data query. The molecular property calculations prove to be correct by comparison with validated reference data and also by agreement of validated chemical database.
+6. How To Access and Use the Platform 
+Atomica is publicly accessible at https://atomica-ai.vercel.app and is designed as a web-based platform accessible through standard web browsers, ensuring broad compatibility across different operating systems and devices. The platform supports all major web browsers including Google Chrome (version 90+), Mozilla Firefox (version 88+), Safari (version 14+), and Microsoft Edge (version 90+). Users require a stable internet connection for optimal performance, with a minimum bandwidth of 5 Mbps recommended for smooth molecular visualization and real-time collaboration features.
+The system achieves low local system requirements because the system uses the cloud-based design. A high-performance platform can be used on low-specification systems with low performance, and at the same time, users should have no less than 4GB of RAM and a modern processor to run it optimally. It has been suggested that graphics acceleration is necessary to improve molecular visualization, but is not mandatory.
+New users are able to create an account by using a simplified registration process, which only needs an email address, name, and institutional affiliation. Email authentication provides security to the account and supports the ability to recover passwords. The platform also offers the single sign-on (SSO) integration with institutional authentication systems to easy access in academic settings.
+Single Platform Access: Once a user successfully logs in, he/she will have the ability to access all the features of the core platform such as molecular visualization, bioactivity analysis, database searches, collaborative feature, and project management. These features do not require any further setup and can be used in full mode to support the end-to-end drug discovery research processes.
+CORS Settings to use with Advanced AI Functionality: To use the advanced AI-driven molecular generation offered by the NVIDIA MolMIM API, customers will have to set their web browsers to permit cross-origin requests. It is a single set up requirement that allows real-time AI molecular generation within the platform interface itself.
+Step-by-Step CORS Setup Guide:
+1.	Google Chrome Users: Open both CORS Unblock Chrome extension or Disable CORS Chrome extension in the Chrome Web Store, enable the extension and refresh the Atomica platform.
+2.	Firefox Users: and add the extension CORS Everywhere to Firefox Add-ons and turn the extension on in the toolbar and restart Firefox.
+3.	Safari Users: open Safari preferences, check the box that says Developer menu and then choose Disable Cross-Origin Restrictions in the Developer menu and reload the platform.
+4.	Users of Microsoft Edge: In Microsoft Edge, add the extension known as CORS Toggle to the Microsoft Edge Add-ons store and enable it and then use the molecular generation features.
+Guidance and Support for Platform: The platform offers a system to automatically identify the status of CORS configuration and has contextual help messages shown when molecular generation functions are used without a relevant setup. The user is taken through the configuration process in interactive tutorials that give instructions browser-specific and have visual aids.
+Features that are fully accessible (No extra configuration is needed):
+•	Three-dimensional representation of molecular structure and manipulation.
+•	PubChem and ChEMBL were used to retrieve and analyse bioactivity data.
+•	Dynamic two and three-dimensional interactive molecular graphics with property mapping.
+•	Teamwork and teamwork in real-time.
+•	Research documentation tools and project management tools.
+•	Import/export of data to integrate with other tools.
+•	Preference customization and user account management.
+•	Guided learning module and educational tutorials.
+Improved Features (There must be CORS settings):
+•	Molecular generation Real-time AI generation with NVIDIA MolMIM API.
+•	Simulation of molecular optimization by interactive methods and instant feedback.
+•	State of the art structure-activity relationship prediction with AI models.
+To users in institutional setting where browser extensions installation is limited, the site will also offer other access options. Institutional proxy servers can also be configured by administrators to satisfy the needs of CORS so they can be fully operational without a user-specific configuration. There are elaborate IT administration instructional manuals that can be deployed in an institution.
+7. Comparative Analysis
+Table 1. Recondite Comparison of web-based drug discovery and molecular generation platforms
+Platform	Tech Stack	AI Integration	Real-time Collaboration	SMILES Support	Bioactivity Integration	Mobile Responsive	Open Source	User Authentication	Export Capabilities	Molecular Visualization
+Atomica (Proposed)	Next.js 14, TypeScript, MongoDB, NextAuth.js	NVIDIA MolMIM	Full (Chat, Workspaces)	Complete with validation	PubChem API	Yes	No	Multi-provider	SDF, CSV, PNG, SVG	Interactive 2D
+ChEMBL Web Interface [26]	Django, PostgreSQL	Limited	None	Basic display only	Native ChEMBL data	Partial	Yes	Optional	SDF, CSV	Static 2D
+PubChem Sketcher [27]	JavaScript, REST APIs	None	None	Complete	Native PubChem data	Yes	No	None	Limited formats	Basic 2D
+ChemSpider [28]	.NET Framework	None	None	Complete	Limited	No	No	Basic	SDF only	Static 2D
+Reaxys Web [29]	Proprietary	None	Limited	Complete	Comprehensive	Partial	No	Enterprise SSO	Multiple formats	Advanced 2D
+SciFinder-n [30]	Proprietary	None	Limited sharing	Complete	Extensive	No	No	Enterprise	Multiple formats	Static 2D
+ZINC Database [31]	PHP, MySQL	None	None	Complete	Limited	Partial	Yes	Optional	SDF, MOL2	Basic 2D
+ChemDraw Cloud [32]	JavaScript, Cloud	None	Basic sharing	Complete	None	Yes	No	Basic	Multiple formats	Professional 2D
+Molview [33]	JavaScript	None	None	Complete	Limited	Yes	No	None	PNG, SVG	Interactive 3D
+ChemSketch Web [34]	Flash/HTML5	None	None	Complete	None	Partial	No	None	Multiple formats	Basic 2D
+In-depth comparative analysis to assess the relevancy and place of Atomica in the present market of web-based and desktop solutions to computational drug discovery was performed. This review will analyse the different stages using several aspects such as information technology structure, completeness of the features, accessibility, team working, and scientific functions. The comparative analysis framework encompasses both direct competitors in the web-based molecular discovery space and established desktop applications that represent current industry standards.
+The comparative analysis showed that Atomica is differentiated with respect to various performance and feature dimensions. The comparison of Atomica and other platforms including ChEMBL Web Interface, PubChem Sketcher, ChemSpider, Reaxys Web, SciFinder-n, ZINC Database, ChemDraw Cloud, Molview, and ChemSketch Web revealed that Atomica is the first tool to implement modern web architecture, AI integration and collaborative features.
+A technology stack developed with Next.js 14, TypeScript, MongoDB, and NextAuth.js allows attracting a substantial and scalable application ideally designed to perform high loads. Atomica is the first platform that incorporates AI, unlike other products that are either based on proprietary systems or legacy technologies, Atomica uses NVIDIA MolMIM framework, and is capable of suggestion during the research workflow and molecular generation in real-time. This is unlike its competitors who do not have or only have limited and non-generative forms of AI.
+Table 2. Performance Metrics Report - Web Core Vitals Score
+Platform	FCP (s)	LCP (s)	TBT (ms)	CLS	Speed Index (s)	Performance Score
+Atomica (Proposed)	0.3	1.1	45	0.001	1.2	Excellent
+ChEMBL Web Interface [26]	1	2.2	670	0.119	3.6	Poor
+PubChem Sketcher [27]	0.6	1.8	80	0	1.6	Good
+ChemSpider [28]	0.4	1.5	20	0.001	2.5	Good
+Reaxys Web [29]	1.5	2.2	340	0.174	2.6	Fair
+SciFinder-n [30]	0.8	1.2	830	0	2.8	Fair
+ZINC Database [31]	1.4	1.9	90	0	1.9	Good
+ChemDraw Cloud [32]	0.7	1.4	2220	0.07	4.5	Poor
+Molview [33]	1	1.3	370	0.005	3	Fair
+ChemSketch Web [34]	0.8	1.6	190	0.005	1.4	Good
+8. Conclusion
+The Atomica system is an important paradigm shift in the democratization of computational drug discovery because it can integrate a fully developed web-based platform with NVIDIA MolMIM AI model. This accomplishment makes highly sophisticated cheminformatics applications available to scientists without requiring a highly technical background, a combination of simultaneously performance through cutting edge machine learning models and simplicity via an intuitive web-based user interface within a scientifically sound and computationally robust framework.
+The technical architecture of the platform has outstanding modularity and scalability, being able to enhance complex scientific workflows responsively, whether to an individual researcher or lab collaboration. Distributed pharmaceutical research teams are supported by real-time collaboration features, which provide instant messaging, shared workspace management and synchronized access to data. This desktop functionality is made accessible by using the web. The hassle-free merge with external scientific databases such as PubChem also allows the scientist to have immediate access to whole sets of chemical resources and bioactivity data all at an integrated platform.
+According to the scientific viewpoint, Atomica makes previously unattainable state of the art computational drug discovery tools accessible to researchers with different expertise and hence, potentially reducing the execution time of discovery. The system offers multiple molecular visualization, real-time property calculation, and bioactivity integration which allows compound evaluation and priority taking on well-informed decisions. Also, its user-friendly interface, and comprehensive documentation, means it is also useful as teaching software to students and beginner researchers, and lessen the time-consuming steep learning curve that promotes some specialized scientific software to utilize.
+The technical implementation of the solution accommodates typical restrictions of scientific application that can be delivered on the Web in terms of intelligent caching infrastructure, effective database design, and simplified rendering of the UI, which is responsive despite the significant computing burden associated with such an undertaking. The security system is able to effectively strike a balance between data security and collaborative functionality, and consider the health of the intellectual property, by providing open scientific exchange that is a scientific necessity in contemporary pharmaceutical research areas. The responsive design has the capacity to retain 100 per cent functionality regardless of the device and retain the rich data visualization and interaction attributes.
+The overall considerations of Atomica are more than just the pharmaceutical research field because the project sets up a beneficial precedent of scientific custom software that incorporates AI models and frequent interfaces and overall collaborative tools. The building and execution planning of the architectural design gives a re-purposable structure in building scientific web applications in diverse research areas such as computational biology, materials science, and environmental research. Such success shows web-based applications have a potential to compete or replace desktop scientific software with an accessibility improvement and collaboration.
+The conclusion of Atomica is that modern web technologies can successfully be united with more conventional scientific computing and artificial intelligence paradigms to develop practical solutions to the complex research problems. The platform fills the existing scandalous breaches in the field of pharmaceutical research and develops technical and stylistic templates that will be useful in the future in creating scientific software in various sciences and can be considered as a triumphal model of the democratization of scientific high-tech tools.
+References
+[1]	V. N. Bhat, S. Bharati, C. Bothiraja, J. Sangshetti, and V. Gaikwad, “A review on intervention of AI in pharmaceutical sector: Revolutionizing drug discovery and manufacturing,” Intelligent Pharmacy, Apr. 2025, doi: 10.1016/j.ipha.2025.04.001.
+[2]	R. Zhang, H. Wen, Z. Lin, B. Li, and X. Zhou, “Artificial Intelligence-Driven Drug Toxicity Prediction: Advances, Challenges, and Future Directions,” Toxics, vol. 13, no. 7, p. 525, Jun. 2025, doi: 10.3390/toxics13070525.
+[3]	R. Qi, S. Liu, X. Hui, A. K. Shaytan, and B. Liu, “AI in drug development: advances in response, combination therapy, repositioning, and molecular design,” Science China Information Sciences, vol. 68, no. 7, p. 170102, Jul. 2025, doi: 10.1007/s11432-024-4461-0.
+[4]	A. Ocana et al., “Integrating artificial intelligence in drug discovery and early drug development: a transformative approach,” Biomark Res, vol. 13, no. 1, p. 45, Mar. 2025, doi: 10.1186/s40364-025-00758-2.
+[5]	T. Khater et al., “Generative artificial intelligence based models optimization towards molecule design enhancement,” J Cheminform, vol. 17, no. 1, p. 116, Aug. 2025, doi: 10.1186/s13321-025-01059-4.
+[6]	“How AI will reshape pharma in 2025,” Drug Target Review. Accessed: Aug. 10, 2025. [Online]. Available: https://www.drugtargetreview.com/article/154981/how-ai-will-reshape-pharma-by-2025 
+[7]	W. Chen, X. Liu, S. Zhang, and S. Chen, “Artificial intelligence for drug discovery: Resources, methods, and applications,” Mol Ther Nucleic Acids, vol. 31, pp. 691–702, Mar. 2023, doi: 10.1016/j.omtn.2023.02.019.
+[8]	R. Sharma, S. Shrivastava, S. K. Singh, A. Kumar, A. K. Singh, and S. Saxena, “XAI-INVENT: An explainable artificial intelligence based framework for rapid discovery of novel antibiotics,” Computers and Electrical Engineering, vol. 123, p. 110098, Apr. 2025, doi: 10.1016/j.compeleceng.2025.110098.
+[9]	D. Paul, G. Sanap, S. Shenoy, D. Kalyane, K. Kalia, and R. K. Tekade, “Artificial intelligence in drug discovery and development,” Drug Discov Today, vol. 26, no. 1, pp. 80–93, Jan. 2021, doi: 10.1016/j.drudis.2020.10.010.
+[10]	K. Chodorow, MongoDB: The Definitive Guide: Powerful and Scalable Data Storage, 2nd ed. California, CA, USA: O’Reilly Media, Inc., 2013.
+[11]	F. J. N. Ferreira and A. S. Carneiro, “AI-Driven Drug Discovery: A Comprehensive Review,” ACS Omega, vol. 10, no. 23, pp. 23889–23903, Jun. 2025, doi: 10.1021/acsomega.5c00549.
+[12]	N. Gambacorta et al., “CUPID: A free drug discovery platform for the explainable multi-ion channel assessment of cardiotoxicity,” Eur J Med Chem, vol. 290, p. 117575, Jun. 2025, doi: 10.1016/j.ejmech.2025.117575.
+[13]	D. Weininger, “SMILES, a chemical language and information system. 1. Introduction to methodology and encoding rules,” J Chem Inf Comput Sci, vol. 28, no. 1, pp. 31–36, Feb. 1988, doi: 10.1021/ci00057a005.
+[14]	T. Turki and Y. Taguchi, “GENEvaRX: A novel AI-driven method and web tool can identify critical genes and effective drugs for Lichen Planus,” Eng Appl Artif Intell, vol. 124, p. 106607, Sep. 2023, doi: 10.1016/j.engappai.2023.106607.
+[15]	S. Ganga, M. Maheswaran, Mohanarathinam, K. K. Dixit, A. P. Singh, and V. D. Earshia, “The use of ML Algo Techniques in Translational Way of HC System (Medicine),” in 2024 4th International Conference on Advance Computing and Innovative Technologies in Engineering (ICACITE), IEEE, May 2024, pp. 199–204. doi: 10.1109/ICACITE60783.2024.10617340.
+
+[16]	A. C. Pushkaran and A. A. Arabi, “From understanding diseases to drug design: can artificial intelligence bridge the gap?,” Artif Intell Rev, vol. 57, no. 4, p. 86, Mar. 2024, doi: 10.1007/s10462-024-10714-5.
+[17]	R. Mariappan, “Extensive Review of Literature on Explainable AI (XAI) in Healthcare Applications,” Recent Advances in Computer Science and Communications, vol. 18, no. 1, Jan. 2025, doi: 10.2174/0126662558296699240314055348.
+[18]	R. Dey, “Artificial Intelligence (AI)’S Transformative Impact on Drug Development and Regulatory Affairs: A 2025 Review,” Am J Biomed Sci Res, vol. 27, no. 4, pp. 599–603, Jun. 2025, doi: 10.34297/AJBSR.2025.27.003572.
+[19]	V. Kairys et al., “Recent advances in computational and experimental protein-ligand affinity determination techniques,” Expert Opin Drug Discov, vol. 19, no. 6, pp. 649–670, Jun. 2024, doi: 10.1080/17460441.2024.2349169.
+[20]	J. Cohen-Setton, K. Bulusu, J. Dry, and B. Sidders, “Abstract 902: Explainable AI: Graph machine learning for response prediction and biomarker discovery,” Cancer Res, vol. 84, no. 6_Supplement, pp. 902–902, Mar. 2024, doi: 10.1158/1538-7445.AM2024-902.
+[21]	O. Zhang et al., “Graph Neural Networks in Modern AI-aided Drug Discovery,” Jun. 2025.
+[22]	M. V. Samudrala, S. Dandibhotla, A. Kaneriya, and S. Dakshanamurthy, “PLAIG: Protein–Ligand Binding Affinity Prediction Using a Novel Interaction-Based Graph Neural Network Framework,” ACS Bio & Med Chem Au, vol. 5, no. 3, pp. 447–463, Jun. 2025, doi: 10.1021/acsbiomedchemau.5c00053.
+[23]	H. Lee, J. Kim, J.-W. Kim, and Y. Lee, “Recent advances in AI-based toxicity prediction for drug discovery,” Front Chem, vol. 13, Jul. 2025, doi: 10.3389/fchem.2025.1632046.
+[24]	L. C. Nechita et al., “AI and Smart Devices in Cardio-Oncology: Advancements in Cardiotoxicity Prediction and Cardiovascular Monitoring,” Diagnostics, vol. 15, no. 6, p. 787, Mar. 2025, doi: 10.3390/diagnostics15060787.
+[25]	Md. A. Talukder, M. Kazi, and A. Alazab, “Predicting drug-target interactions using machine learning with improved data balancing and feature engineering,” Sci Rep, vol. 15, no. 1, p. 19495, Jun. 2025, doi: 10.1038/s41598-025-03932-6.
+[26]	“ChEMBL Web Interface.” Accessed: Aug. 16, 2025. [Online]. Available: https://www.ebi.ac.uk/chembl 
+[27]	“PubChem Sketcher.” Accessed: Aug. 16, 2025. [Online]. Available: https://pubchem.ncbi.nlm.nih.gov//edit3/index.html 
+[28]	“ChemSpider.” Accessed: Aug. 16, 2025. [Online]. Available: https://www.chemspider.com 
+[29]	“Reaxys Web.” Accessed: Aug. 16, 2025. [Online]. Available: https://www.elsevier.com/en-in/products/reaxys 
+[30]	“SciFinder-n.” Accessed: Aug. 16, 2025. [Online]. Available: https://www.cas.org/solutions/cas-scifinder-discovery-platform/cas-scifinder 
+[31]	“ZINC Database.” Accessed: Aug. 16, 2025. [Online]. Available: https://zinc.docking.org 
+[32]	“ChemDraw Cloud.” Accessed: Aug. 16, 2025. [Online]. Available: https://revvitysignals.com/products/research/chemdraw 
+[33]	“Molview.” Accessed: Aug. 16, 2025. [Online]. Available: https://molview.org 
+[34]	“ChemSketch Web.” Accessed: Aug. 16, 2025. [Online]. Available: https://www.rcsb.org/chemical-sketch
+
+Author(s) Contributions
+1.	Hemant Kumar Soni: Conceptualized the research, designed the system architecture, supervised the project, and wrote the manuscript.
+2.	Krishna Chauhan: Contributed to literature review, frontend development, performance testing, and manuscript review.
+3.	Kratanjali Chandel: Participated in backend implementation, AI model integration, scientific validation, and manuscript review.
+All authors have read and approved the final manuscript. 
+
+Acknowledgments
+The authors are thankful to Prof (Dr.) Rachana Kathal, Department of Applied Chemistry, Dr. Rajesh Kumar Sharma, Amity University Madhya Pradesh, Gwalior, for their excellent support. We are also thankful to the Department of Applied Chemistry & Department of Pharmacy, Amity University Madhya Pradesh, Gwalior, for all the necessary facilities.
+
+Conflict of Interest Notice
+The authors declare that they have no conflict of interest.
+
+Support/Supporting Organizations 
+This research received no external funding. The work was conducted using institutional resources provided by Amity University, Madhya Pradesh, Gwalior, India.
+
+Ethical Approval
+It is declared that during the preparation process of this study, scientific and ethical principles were followed, and all the studies benefited from are stated in the bibliography. This computational research did not involve human subjects or animal testing, therefore ethical approval was not required.
+
+Availability of data and material
+Not applicable / or link
+
+Artificial Intelligence Statement
+No artificial intelligence tools were used while writing this article.
+
+Plagiarism Statement
+This article has been scanned by iThenticate ™.
+
